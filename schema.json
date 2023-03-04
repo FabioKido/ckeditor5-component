@@ -5,12 +5,37 @@
     "name": "CKEditor5",
     "friendlyName": "CKEditor5",
     "description": "A rich text component for Budibase",
-    "icon": "Text",
+    "icon": "TextAlignLeft",
+    "styles": ["padding", "size"],
     "settings": [
       {
+        "type": "field/longform",
+        "label": "Field",
+        "key": "field",
+        "required": true
+      },
+      {
         "type": "text",
-        "key": "text",
-        "label": "Text"
+        "key": "label",
+        "label": "Label"
+      },
+      {
+        "type": "select",
+        "label": "Background",
+        "key": "background",
+        "defaultValue": "#1C1E22",
+        "showInBar": true,
+        "barStyle": "picker",
+        "options": [
+          {
+            "label": "Darkest",
+            "value": "000000"
+          },
+          {
+            "label": "Midnight",
+            "value": "#1C1E22"
+          }
+        ]
       }
     ]
   }
