@@ -1,25 +1,25 @@
 <script>
-  import { getContext, onDestroy } from "svelte"
+  import { getContext, onDestroy } from "svelte";
 
   import CKEditor from "ckeditor5-svelte";
   import ClassicEditor from "@ckeditor/ckeditor5-build-classic/build/ckeditor";
 
-  export let field
-  export let label
-  export let background
+  export let field;
+  export let label;
+  export let background;
 
-  let fieldApi
-  let fieldState
+  let fieldApi;
+  let fieldState;
 
-  const { styleable } = getContext("sdk")
-  const component = getContext("component")
-  const formContext = getContext("form")
-  const formStepContext = getContext("form-step")
-  const fieldGroupContext = getContext("field-group")
+  const { styleable } = getContext("sdk");
+  const component = getContext("component");
+  const formContext = getContext("form");
+  const formStepContext = getContext("form-step");
+  const fieldGroupContext = getContext("field-group");
 
-  const formApi = formContext?.formApi
+  const formApi = formContext?.formApi;
 
-  $: formStep = formStepContext ? $formStepContext || 1 : 1
+  $: formStep = formStepContext ? $formStepContext || 1 : 1;
   $: formField = formApi?.registerField(
     field,
     "text",
@@ -27,22 +27,22 @@
     false,
     null,
     formStep
-  )
+  );
 
-  const labelPos = fieldGroupContext?.labelPosition || "above"
+  const labelPos = fieldGroupContext?.labelPosition || "above";
 
   $: labelClass =
-    labelPos === "above" ? "" : `spectrum-FieldLabel--${labelPos}`
+    labelPos === "above" ? "" : `spectrum-FieldLabel--${labelPos}`;
 
   $: unsubscribe = formField?.subscribe((value) => {
-    fieldState = value?.fieldState
-    fieldApi = value?.fieldApi
-  })
+    fieldState = value?.fieldState;
+    fieldApi = value?.fieldApi;
+  });
 
   onDestroy(() => {
-    fieldApi?.deregister()
-    unsubscribe?.()
-  })
+    fieldApi?.deregister();
+    unsubscribe?.();
+  });
 
   let editor = ClassicEditor;
   let editorInstance = null;
@@ -50,15 +50,31 @@
   let editorConfig = {
     toolbar: {
       items: [
+        "selectAll",
+        "|",
         "heading",
         "|",
-        "fontFamily",
-        "fontSize",
         "bold",
         "italic",
-        "underline"
-      ]
-    }
+        "strikethrough", // precisa de lib
+        "underline",  // precisa de lib
+        "|",
+        "bulletedList",
+        "numberedList",
+        "|",
+        "undo",
+        "redo",
+        "fontSize", // precisa de lib
+        "fontFamily", // precisa de lib
+        "fontColor",  // precisa de lib
+        "fontBackgroundColor",  // precisa de lib
+        "|",
+        "alignment",  // precisa de lib
+        "|",
+        "link",
+        "blockQuote"
+      ],
+    },
   };
 
   function onReady({ detail: editor }) {
@@ -72,9 +88,8 @@
   }
 
   function onHandleChange() {
-    fieldApi.setValue()
+    fieldApi.setValue();
   }
-
 </script>
 
 <div class="spectrum-Form-item" use:styleable={$component.styles}>
@@ -92,13 +107,6 @@
     </label>
 
     <div class="spectrum-Form-itemField">
-      <!-- <div
-        on:change={() => onHandleChange()}
-        style:background-color={background}
-        id="editorjs"
-      /> -->
-      <!-- Valor atual no field: {fieldState?.value} -->
-    
       <CKEditor
         bind:editor
         on:ready={onReady}
