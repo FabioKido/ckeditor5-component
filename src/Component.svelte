@@ -1,6 +1,9 @@
 <script>
   import { getContext, onDestroy } from "svelte"
 
+  import CKEditor from "ckeditor5-svelte";
+  import ClassicEditor from "@ckeditor/ckeditor5-build-classic/build/ckeditor";
+
   export let field
   export let label
   export let background
@@ -41,7 +44,32 @@
     unsubscribe?.()
   })
 
+  let editor = ClassicEditor;
+  let editorInstance = null;
 
+  let editorConfig = {
+    toolbar: {
+      items: [
+        "heading",
+        "|",
+        "fontFamily",
+        "fontSize",
+        "bold",
+        "italic",
+        "underline"
+      ]
+    }
+  };
+
+  function onReady({ detail: editor }) {
+    editorInstance = editor;
+    editor.ui
+      .getEditableElement()
+      .parentElement.insertBefore(
+        editor.ui.view.toolbar.element,
+        editor.ui.getEditableElement()
+      );
+  }
 
   function onHandleChange() {
     fieldApi.setValue()
@@ -69,7 +97,14 @@
         style:background-color={background}
         id="editorjs"
       /> -->
-        Valor atual no field: {fieldState?.value}
+      <!-- Valor atual no field: {fieldState?.value} -->
+    
+      <CKEditor
+        bind:editor
+        on:ready={onReady}
+        bind:config={editorConfig}
+        bind:value={fieldState.value}
+      />
     </div>
 
     {#if fieldState?.error}

@@ -11,7 +11,9 @@
     "watch": "rollup -cw"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^36.0.1",
     "@crownframework/svelte-error-boundary": "^1.0.3",
+    "ckeditor5-svelte": "^0.0.10",
     "svelte": "^3.49.0"
   },
   "devDependencies": {
