@@ -57,7 +57,7 @@
         "bold",
         "italic",
         "strikethrough", // precisa de lib
-        "underline",  // precisa de lib
+        "underline", // precisa de lib
         "|",
         "bulletedList",
         "numberedList",
@@ -66,13 +66,13 @@
         "redo",
         "fontSize", // precisa de lib
         "fontFamily", // precisa de lib
-        "fontColor",  // precisa de lib
-        "fontBackgroundColor",  // precisa de lib
+        "fontColor", // precisa de lib
+        "fontBackgroundColor", // precisa de lib
         "|",
-        "alignment",  // precisa de lib
+        "alignment", // precisa de lib
         "|",
         "link",
-        "blockQuote"
+        "blockQuote",
       ],
     },
   };
@@ -88,8 +88,20 @@
   }
 
   function onHandleChange() {
-    fieldApi.setValue();
+    let editor = document.querySelector(
+      ".ck-blurred.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline"
+    );
+
+    try {
+      if (editor.ckeditorInstance.getData()) {
+        fieldApi.setValue(editor.ckeditorInstance.getData());
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
   }
+
+  setInterval(onHandleChange, 1000);
 </script>
 
 <div class="spectrum-Form-item" use:styleable={$component.styles}>
