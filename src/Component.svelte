@@ -2,7 +2,8 @@
   import { getContext, onDestroy } from "svelte";
 
   import CKEditor from "ckeditor5-svelte";
-  import ClassicEditor from "@ckeditor/ckeditor5-build-classic/build/ckeditor";
+  //import ClassicEditor from "@ckeditor/ckeditor5-build-classic/build/ckeditor";
+  import DecoupledEditor from "@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor";
 
   export let field;
   export let label;
@@ -44,7 +45,7 @@
     unsubscribe?.();
   });
 
-  let editor = ClassicEditor;
+  let editor = DecoupledEditor;
   let editorInstance = null;
 
   let editorConfig = {
@@ -93,8 +94,10 @@
     );
 
     try {
-      if (editor.ckeditorInstance.getData()) {
-        fieldApi.setValue(editor.ckeditorInstance.getData());
+      let data = editor.ckeditorInstance.getData()
+
+      if (data) {
+        fieldApi.setValue(data);
       }
     } catch (e) {
       console.log(e.message);
