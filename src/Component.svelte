@@ -3,7 +3,7 @@
 
   import CKEditor from "ckeditor5-svelte";
   //import ClassicEditor from "@ckeditor/ckeditor5-build-classic/build/ckeditor";
-  import DecoupledEditor from "@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor";
+  import DecoupledEditor from "ckeditor5-36.0.1-vjtk9mko3u0e/build/ckeditor";
 
   export let field;
   export let label;
@@ -49,6 +49,7 @@
   let editorInstance = null;
 
   let editorConfig = {
+    removePlugins: [ 'Title' ],
     toolbar: {
       items: [
         "selectAll",
