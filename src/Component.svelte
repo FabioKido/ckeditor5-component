@@ -3,7 +3,7 @@
 
   import CKEditor from "ckeditor5-svelte";
   //import ClassicEditor from "@ckeditor/ckeditor5-build-classic/build/ckeditor";
-  import DecoupledEditor from "ckeditor5-36.0.1-vjtk9mko3u0e/build/ckeditor";
+  import CustomEditor from "ckeditor5-36.0.1-vjtk9mko3u0e/build/ckeditor";
 
   export let field;
   export let label;
@@ -45,7 +45,7 @@
     unsubscribe?.();
   });
 
-  let editor = DecoupledEditor;
+  let editor = CustomEditor;
   let editorInstance = null;
 
   let editorConfig = {
@@ -58,23 +58,21 @@
         "|",
         "bold",
         "italic",
-        "strikethrough", // precisa de lib
-        "underline", // precisa de lib
+        "strikethrough",
+        "underline",
         "|",
         "bulletedList",
         "numberedList",
         "|",
-        "undo",
-        "redo",
-        "fontSize", // precisa de lib
-        "fontFamily", // precisa de lib
-        "fontColor", // precisa de lib
-        "fontBackgroundColor", // precisa de lib
-        "|",
-        "alignment", // precisa de lib
+        "fontSize",
+        "fontColor",
+        "fontBackgroundColor",
         "|",
         "link",
         "blockQuote",
+        "|",
+        "undo",
+        "redo"
       ],
     },
   };
@@ -91,7 +89,7 @@
 
   function onHandleChange() {
     let editor = document.querySelector(
-      ".ck-blurred.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline"
+      ".ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred"
     );
 
     try {
@@ -101,11 +99,11 @@
         fieldApi.setValue(data);
       }
     } catch (e) {
-      console.log(e.message);
+      // console.log(e.message);
     }
   }
 
-  setInterval(onHandleChange, 1000);
+  setInterval(onHandleChange, 300);
 </script>
 
 <div class="spectrum-Form-item" use:styleable={$component.styles}>
