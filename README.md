@@ -1,5 +1,5 @@
 # CKEditor5
-This is a readme for your new Budibase plugin.
+HTML editor made with CKEditor5 Custom
 
 # Description
 A rich text component for Budibase
