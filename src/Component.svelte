@@ -4,11 +4,10 @@
   import CKEditor from "ckeditor5-svelte";
   import CustomEditor from "ckeditor5-36.0.1-c04e91ygj1zj/build/ckeditor";
 
-  import './custom.css';
+  import "./custom.css";
 
   export let field;
   export let label;
-  export let background;
 
   let fieldApi;
   let fieldState;
@@ -48,9 +47,19 @@
 
   let editor = CustomEditor;
   let editorInstance = null;
+  let initialData = "";
+
+  setTimeout(() => {
+    initialData = fieldState.value
+  }, 100)
 
   let editorConfig = {
-    removePlugins: [ 'Title' ],
+    removePlugins: ["Title"],
+    autosave: {
+      save(editor) {
+        return saveData(editor.getData());
+      },
+    },
     toolbar: {
       items: [
         "selectAll",
@@ -76,7 +85,7 @@
         "blockQuote",
         "|",
         "undo",
-        "redo"
+        "redo",
       ],
     },
   };
@@ -91,23 +100,28 @@
       );
   }
 
-  function onHandleChange() {
-    let editor = document.querySelector(
-      ".ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred"
-    );
+  function saveData(data) {
+    displayStatus(true);
 
-    try {
-      let data = editor.ckeditorInstance.getData()
+    return setTimeout(() => {
 
-      if (data) {
-        fieldApi.setValue(data);
-      }
-    } catch (e) {
-      // console.log(e.message);
-    }
+      //console.log("Saved");
+      
+      displayStatus();
+
+      fieldApi.setValue(data);
+    }, 200);
   }
 
-  setInterval(onHandleChange, 50);
+  function displayStatus(saved = false) {
+    const statusIndicator = document.querySelector("#save");
+
+    if (saved) {
+      statusIndicator.style.display = "block";
+    } else {
+      statusIndicator.style.display = "none";
+    }
+  }
 </script>
 
 <div class="spectrum-Form-item" use:styleable={$component.styles}>
@@ -129,11 +143,12 @@
         bind:editor
         on:ready={onReady}
         bind:config={editorConfig}
-        bind:value={fieldState.value}
+        bind:value={initialData}
       />
+
+      <span id="save">Salvando...</span>
     </div>
 
-    <span id="save">Salvando...</span>
     {#if fieldState?.error}
       <div class="error">{fieldState.error}</div>
     {/if}
@@ -155,9 +170,13 @@
   .spectrum-FieldLabel--left {
     padding-right: var(--spectrum-global-dimension-size-200);
   }
-
   #save {
-    position: relative;
-    color: #FAFAFA;
+    display: none;
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+    color: #fafafa;
+    transition: 0.5s;
+    opacity: 0.5;
   }
 </style>
