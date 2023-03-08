@@ -2,8 +2,9 @@
   import { getContext, onDestroy } from "svelte";
 
   import CKEditor from "ckeditor5-svelte";
-  //import ClassicEditor from "@ckeditor/ckeditor5-build-classic/build/ckeditor";
-  import CustomEditor from "ckeditor5-36.0.1-vjtk9mko3u0e/build/ckeditor";
+  import CustomEditor from "ckeditor5-36.0.1-c04e91ygj1zj/build/ckeditor";
+
+  import './custom.css';
 
   export let field;
   export let label;
@@ -61,6 +62,9 @@
         "strikethrough",
         "underline",
         "|",
+        "alignment",
+        "removeFormat",
+        "|",
         "bulletedList",
         "numberedList",
         "|",
@@ -103,7 +107,7 @@
     }
   }
 
-  setInterval(onHandleChange, 300);
+  setInterval(onHandleChange, 50);
 </script>
 
 <div class="spectrum-Form-item" use:styleable={$component.styles}>
@@ -129,6 +133,7 @@
       />
     </div>
 
+    <span id="save">Salvando...</span>
     {#if fieldState?.error}
       <div class="error">{fieldState.error}</div>
     {/if}
@@ -149,5 +154,10 @@
   .spectrum-FieldLabel--right,
   .spectrum-FieldLabel--left {
     padding-right: var(--spectrum-global-dimension-size-200);
+  }
+
+  #save {
+    position: relative;
+    color: #FAFAFA;
   }
 </style>
