@@ -156,6 +156,10 @@
 </div>
 
 <style>
+  :root {
+    --ck-color-base-background: #080808;
+    --ck-custom-background: #080808;
+  }
   label {
     white-space: nowrap;
   }

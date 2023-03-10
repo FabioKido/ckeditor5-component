@@ -6,9 +6,7 @@
     --ck-font-size-base: 14px;
 
     /* Helper variables to avoid duplication in the colors. */
-    --ck-color-base-background: #1C1E22;
     --ck-color-base-border: #ccced138;
-    --ck-custom-background: #1C1E22;
     --ck-custom-foreground: hsl(255, 3%, 18%);
     --ck-custom-border: hsl(300, 1%, 22%);
     --ck-custom-white: hsl(0, 0%, 100%);
@@ -107,6 +105,15 @@
     --ck-color-link-default: hsl(190, 100%, 75%);
 }
 
+.ck.ck-toolbar.ck-toolbar_grouping {
+    width: 600px;
+}
+
 .ck.ck-editor__editable_inline {
     min-height: 200px;
+    width: 600px;
+}
+
+.ck.ck-button, a.ck.ck-button {
+    cursor: pointer;
 }

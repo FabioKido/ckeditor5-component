@@ -6,7 +6,11 @@
     "friendlyName": "CKEditor5",
     "description": "A rich text component for Budibase",
     "icon": "TextAlignLeft",
-    "styles": ["padding", "size"],
+    "styles": ["size"],
+    "size": {
+      "width": 600,
+      "height": 200
+    },
     "settings": [
       {
         "type": "field/longform",
