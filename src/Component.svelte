@@ -57,7 +57,7 @@
       localStorage.setItem("ck-draft", "");
     }
 
-    if(draft && draft !== fieldState.value){
+    if(draft && draft.length !== fieldState.value.length){
       resultado = confirm("Continuar de onde parou escrevendo?");
     }
 

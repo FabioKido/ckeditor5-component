@@ -1,6 +1,6 @@
 {
   "name": "CKEditor5",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A rich text component for Budibase",
   "license": "MIT",
   "svelte": "index.js",
