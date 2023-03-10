@@ -48,24 +48,9 @@
   let editor = CustomEditor;
   let editorInstance = null;
   let initialData = "";
-  const draft = localStorage.getItem("ck-draft");
 
   setTimeout(() => {
-    let resultado = false;
-
-    if (!draft) {
-      localStorage.setItem("ck-draft", "");
-    }
-
-    if(draft && draft.length !== fieldState.value.length){
-      resultado = confirm("Continuar de onde parou escrevendo?");
-    }
-
-    if(resultado) {
-      initialData = draft
-    } else {
-      initialData = fieldState.value;
-    }
+    initialData = fieldState.value;
   }, 100);
 
   let editorConfig = {
@@ -122,7 +107,6 @@
     return setTimeout(() => {
       displayStatus();
 
-      localStorage.setItem("ck-draft", data);
       fieldApi.setValue(data);
     }, 200);
   }
