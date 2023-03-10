@@ -83,6 +83,7 @@
         "|",
         "link",
         "blockQuote",
+        "HorizontalLine",
         "|",
         "undo",
         "redo",
