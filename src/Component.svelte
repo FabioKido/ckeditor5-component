@@ -48,10 +48,25 @@
   let editor = CustomEditor;
   let editorInstance = null;
   let initialData = "";
+  const draft = localStorage.getItem("ck-draft");
 
   setTimeout(() => {
-    initialData = fieldState.value
-  }, 100)
+    let resultado = false;
+
+    if (!draft) {
+      localStorage.setItem("ck-draft", "");
+    }
+
+    if(draft && draft !== fieldState.value){
+      resultado = confirm("Continuar de onde parou escrevendo?");
+    }
+
+    if(resultado) {
+      initialData = draft
+    } else {
+      initialData = fieldState.value;
+    }
+  }, 100);
 
   let editorConfig = {
     removePlugins: ["Title"],
@@ -105,11 +120,9 @@
     displayStatus(true);
 
     return setTimeout(() => {
-
-      //console.log("Saved");
-      
       displayStatus();
 
+      localStorage.setItem("ck-draft", data);
       fieldApi.setValue(data);
     }, 200);
   }
