@@ -144,7 +144,7 @@
         bind:value={initialData}
       />
 
-      <span id="save">Salvando...</span>
+      <span id="save">&#128190;</span>
     </div>
 
     {#if fieldState?.error}
@@ -175,9 +175,9 @@
   #save {
     display: none;
     position: absolute;
-    bottom: 4px;
-    right: 8px;
-    color: #fafafa;
+    top: 10px;
+    right: 55px;
+    font-size: 18px;
     transition: 0.5s;
     opacity: 0.5;
   }
