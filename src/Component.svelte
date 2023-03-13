@@ -176,7 +176,7 @@
     display: none;
     position: absolute;
     top: 10px;
-    right: 0px;
+    right: -28px;
     font-size: 18px;
     transition: 0.5s;
     opacity: 0.5;
