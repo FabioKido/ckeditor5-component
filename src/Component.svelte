@@ -2,7 +2,7 @@
   import { getContext, onDestroy } from "svelte";
 
   import CKEditor from "ckeditor5-svelte";
-  import CustomEditor from "ckeditor5-36.0.1-c04e91ygj1zj/build/ckeditor";
+  import CustomEditor from "ckeditor5-36.0.1-gukvvkxh7pge/build/ckeditor";
 
   import "./custom.css";
 
@@ -81,9 +81,10 @@
         "bulletedList",
         "numberedList",
         "|",
+        "HorizontalLine",
+        "specialCharacters",
         "link",
         "blockQuote",
-        "HorizontalLine",
         "|",
         "undo",
         "redo",
