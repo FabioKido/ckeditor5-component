@@ -2,7 +2,7 @@
   import { getContext, onDestroy } from "svelte";
 
   import CKEditor from "ckeditor5-svelte";
-  import CustomEditor from "ckeditor5-36.0.1-gukvvkxh5fgh/build/ckeditor";
+  import CustomEditor from "ckeditor5-custom";
 
   import "./custom.css";
 
