@@ -104,6 +104,7 @@
 
     --ck-color-link-default: hsl(190, 100%, 75%);
 }
+
 .ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-focused,
 .ck-blurred.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline {
     background: var(--spectrum-global-color-gray-50);
@@ -132,4 +133,9 @@
 .ck.ck-button.ck-off:hover, a.ck.ck-button.ck-off:hover {
     background: var(--spectrum-global-color-gray-200);
     border-color: var(--spectrum-global-color-gray-400);
+}
+
+.ck.ck-dropdown__panel {
+    bottom: auto;
+    background: var(--spectrum-global-color-gray-50);
 }
